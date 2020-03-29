@@ -1,0 +1,50 @@
+궁금하니까 html로 만들어서 redirect를 해볼게요.
+될지는 모르겠어요.
+resources를 webapp에 넣어놨어요
+거기로 다 옮기고 경로를 변경해볼게요.
+
+근데 이걸 나중에는 데이터베이스도 쓰고 하려면 jsp로 해야할거에요.
+일단은 보려구요..
+src/main/webapp/resources/assets/css/main.css
+src/main/webapp/resources/assets/css/myboot.css
+
+근데 확인해본 결과 그렇게 하면 안될 것 같네요.
+
+아까 안나와서 당황했는데
+controller 설정해둔 것 때문에 안됐던 것 같아요.
+그래서 지금 controller 패키지 만들어서 컨트롤러 만들어두고
+config 패키지도 다시 보고 해서 페이지가 뜨게 만들기는 했습니다.
+끙...
+뭔가 저런 거 해두면 이제 저런식으로만 동작하게 한다는 뜻인 것 같다.
+하기 전에는 그냥 index.jsp가 나왔었는데. 헷갈리네
+
+그나저나 저 설정을 진짜 어디에 넣어야되는거임??
+
+href를 resources/css/myboot.css
+라고 하니까 됐다..?
+webapp - resources - css에 넣어줬는데..
+
+어떤 영어 쓰는 사람이 가르쳐준걸로 했다가 500 떠가지구 그거 지우니까 됐는데
+그게 틀린거겠지..? 응.
+
+이미지가 안나와서 다 경로를 (main css도 그렇고 로고 넣은 것도 그렇고
+resources/css/images/이름
+형태로 넣어야 할 듯 하다.
+resources/css/images/logo.png
+
+locker.jsp에서 js 경로를 바꿈
+assets/js/jquery.min.js
+->
+resources/js/
+
+아니 폴더가.. image가 asset안에도 있고 밖에도 있는거구나 ㅋㅋㅋ
+너무 헷갈릴 것 같아서 다시 assets를 살리고 그 안에 다 놔뒀다.
+우리가 원래 받았던 파일처럼 고쳤다.
+
+그래서 이제
+resources/assets/css
+resources/images 이런식으로 사용한다.
+
+main.css
+locker.jsp
+고칠 데는 사실 여기밖에 없다.
