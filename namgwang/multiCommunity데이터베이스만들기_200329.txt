@@ -1,0 +1,120 @@
+public class Locker
+{	
+	private Int locker_id;
+	private String student_id;
+	private String locker_available;
+	private String locker_second_student_id;
+	
+}
+
+
+LockerDao, LockerSqls, LockerDto를 만들었습니다.
+
+아.. update를 해야되는건지 insert를 해야되는지 
+처음부터 난관인 것 같은데..
+
+만든 거 시험해볼거에요.
+LockerDaoTest.java
+
+ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class); 
+
+그러면 나도 insert를 만들어봐야겠어
+LockerDao에다가 insert 함수를 만들어보자.
+
+참고해서 만들어보자.. 근데 왜 long이야 짜증나게.
+public Long insert(Guestbook guestbook) {
+	SqlParameterSource params = new BeanPropertySqlParameterSource(guestbook);
+	return insertAction.executeAndReturnKey(params).longValue();
+}
+
+public Integer insert(Locker locker) {
+	SqlParameterSource params = new BeanPropertySqlParameterSource(locker);
+	return insertAction.executeAndReturnKey(params).intValue(); //이게 있는지 모르겠는데;
+	
+	//근데 이게 id를 리턴하는 이유가 뭐임? 진짜 신기한데 ㅋㅋㅋㅋ
+	//그게 왜 되는건데 ㅋㅋㅋㅋ
+}
+
+//insert예제를 먼저 해봅시다.
+
+LockerDao lockerDao = ac.getBean(LockerDao.class);
+Locker locker = new locker();
+locker.setLocker_id(26);
+locker.setStudent_id('2015112631');
+locker.setLocker_available('false'); //이제 넣을거니까..
+locker.setLocker_second_student_id('x');
+Long id = lockerDao.insert(locker);
+System.out.println("id : " + id);
+
+Test를 만들어서 돌려봤는데 오류났음..
+컨피그 설정을 안해서겠찌?
+
+DBConfig 만들었고 ApplicationConfig에서 지정해줌. 애노테이션 달아줌.
+되려나..
+
+빈 등록이 안됐던 건 componentscan에서 잘못 써서 그런거였는데
+값이.. 시발 좀 ㅋㅋㅋㅋㅋ 어떻게 쓰라고~
+
+LockerDao insertAction을 넣어줬어야했나ㅗ바.
+
+뭐지 대문자로 만들었는데 소문자가 된 것 같은데..?
+
+
+이름 대소문자 맞춰줬는데 외래키때문에 안나온 것 같다.
+
+아 인서트부터 해야겠음
+개짜증나네진짜 죽여버려..
+
+일단 두 테이블에 데이터를 넣어줬습니다.
+
+insert into student(student_id, student_name) values("2015112631", "광광");
+insert into student(student_id, student_name) values("2015112601", "남남");
+
+insert into locker(locker_id, student_id) values(1, "2015112631");
+insert into locker(locker_id, student_id) values(2, "2015112601");
+
+
+와.. 인간승리
+ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+하.. 진짜 미치는 줄.
+
+어떻게 해결했냐면
+외래키는 결국 그 가져온 테이블에 있어야된다는 게 제일 중요한거였어.
+그리고 그 전에 오류가 났던 이유는 java에서 sql에 있는 변수들을 대문자로 써줘야되는데 내가
+데이터베이스에 썼던 거랑 동일하게 _를 사용해서 썼다는 거야.
+이게 매퍼가 알아서 바꿔준데..
+그래서 대문자로 써야한다고 하더라구.
+
+내가 실습을 해본건.
+데이터를 집어넣는 걸 해봤고 (simplejdbcinsert인가 뭔가를 사용해서)
+모든 데이터를 출력하는 걸 해봤어. selectall을 사용해서.
+
+이런 함수들은 LockderDao에 모두 구현이 되어있다.
+
+
+더 필요로 하는 연산들은 하나씩 찾아보면서 해야될 것 같다
+일단 오늘은 DB 연걸해봤으니 두 다리 뻗고 자도 될 것 같슴다.
+크으으으
+
+
+
+와 근데 이래서 외래키가 무서운거구나.. 진짜 돌아버리는줄.
+
+
+
+
+
+애노테이션도 중요하고
+대소문자도 중요하고
+어떻게 쓰는지도 중요하고
+뭐가 필요한건지도 당연히 알아야 할거고.
+
+
+
+
+
+
+
+
+
+
