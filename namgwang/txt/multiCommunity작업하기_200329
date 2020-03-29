@@ -1,0 +1,126 @@
+200329 일요일
+multiCommunity 파일을 만들었습니다.
+
+어떻게 진행하고 있냐면
+1. pom.xml을 긁어왔다.
+2. web.xml도 긁었다.
+3. properties 설정하고
+4. facet에서 바꿔줬고
+5. 사실 스티키 노트에 해놓은걸로 다 바꿔줬음....
+6. 서버를 새로 띄워서 시간 조정을 해줬다.
+7. encoding이 오류가 나서 jsp 파일에서  <%@ 이 설정으로 해결했다.
+8. redirect 테스트를 했다. 근데. 컨트롤러로 하려면 따로 설정을 많이 해야겠죠..?
+어.. 근데 꼭 그걸 그렇게 해야되나? 모르겠네 ㅎㅎㅎ.
+
+패키지
+kr.or.multi.multiCommunity.config를 만들었다.
+그 안에
+ApplicationConfig.java
+WebMvcContextConfiguration.java
+를 만들고 붙여넣었다.
+
+db는 새로만들어야하니까
+edwith.org/boostcourse-web/lecture/16720/
+를 따라 만들어보자.
+험난할 것이 예상된다.. 이참에 좀 정리 해놓아야할 듯.
+
+views 폴더를 만들어서 index.jsp와 다른 애들을 넣었어요.
+
+
+[데이터베이스]
+-루트로 접속하기
+mysql -uroot -p
+비번치세요.
+
+-데이터베이스 만들기
+create database multicommunity;
+
+-사용자 설정하기
+create user 'multiuser'@'localhost' identified by 'multi123!@#';
+create user 'multiuser'@'%' identified by 'multi123!@#';
+grant all privileges on multicommunity.* to 'multiuser'@'localhost';
+grant all privileges on multicommunity.* to 'multiuser'@'%';
+flush privileges;
+
+-사용자가 데이터베이스 사용하기
+cmd 창을 새로 띄우고 접속한다.
+mysql -hlocalhost -umultiuser -p multicommunity
+마지막에 ; 를 붙이지 않도록 주의하자.
+
+show tables; 하면  테이블이 보인다.
+데이터베이스는 이미 multicommunity 로 들어간거고.
+(root 계정으로 들어가면 모든 데이터베이스들이 있어서 사용하고자 하는 데이터베이스를위해
+'use 데이터베이스이름' 으로 들어가야함.
+하지만 지금 사용자는 접속을 할 때 multicommunity로 접속했으므로 할 필요가 없다는 의미)
+원하는 질의문을 작성하면 된다.
+
+-데이터베이스 사용하기(root)
+use multicommunity;
+
+-테이블 생성하기
+1. 학생 테이블(외래키때문에 필요할 것 같아서)
+create table STUDENT(
+	student_id VARCHAR(20) NOT NULL PRIMARY KEY,
+	student_name VARCHAR(20),
+	student_join_date DATETIME
+);
+이름도 not null이어야 할까?
+
+2. 사물함 테이블
+//available과 second가 필요할지. 아직 모르겠지만 일단 만들어뒀습니다.
+create table locker(
+	locker_id INTEGER NOT NULL PRIMARY KEY,
+	student_id VARCHAR(20) FOREIGN KEY,
+	locker_available VARCHAR(20) DEFAULT 'true',
+	locker_second_student_id VARCHAR(20)
+);
+
+사실 외래키는 이것만 하면 만들어지지 않아요. 정답은 밑에서 공개.
+
+/*
+create table locker(
+	locker_id INTEGER NOT NULL PRIMARY KEY,
+	student_id VARCHAR(20) FOREIGN KEY
+);
+
+create table locker(
+	locker_id INTEGER NOT NULL PRIMARY KEY,
+	student_id VARCHAR(20) FOREIGN KEY,
+	locker_available VARCHAR(20) DEFAULT 'true'
+);
+
+create table locker(
+	locker_id INTEGER NOT NULL PRIMARY KEY,
+	student_id VARCHAR(20)
+);
+
+아니 왜 마지막 것만 되는거지..?? 왜냐면 외래키는 누구의 외래키인지를 알려줘야 하기 때문이다.
+*/
+
+이분 걸 참고했습니다.
+CREATE TABLE FriendAddInfo   -- 친구 신청 정보
+(
+abc bigint(20) unsigned NOT NULL,  
+def bigint(20) unsigned NOT NULL,  
+FOREIGN KEY(abc) REFERENCES UserInfo(a) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY(def) REFERENCES UserInfo(a) ON UPDATE CASCADE ON DELETE CASCADE 
+);
+
+출처: https://linuxism.ustd.ip.or.kr/429 [linuxism]
+찾아보니 이런식으로 어떤 걸 참조하고있는지를 적어줘야한다.
+
+정답은 다음과 같다.
+create table LOCKER(
+	locker_id INTEGER NOT NULL PRIMARY KEY,
+	student_id VARCHAR(20),
+	locker_available VARCHAR(20) DEFAULT 'true',
+	locker_second_student_id VARCHAR(20),
+	FOREIGN KEY(student_id) REFERENCES STUDENT(student_id) ON UPDATE CASCADE ON DELETE CASCADE 
+);
+
+-테이블 삭제하기
+drop table locker 했음. 내가 맨 처음에 소문자로 만들어서.
+
+수정은 나중에 필요하면 alter table 테이블이름
+해서 add나 drop이나(근데 내가알기론 delete 였던 것 같은데 뭐지.) change 하면 될 듯.
+사이트 참고하면서 하시길 바랍니다.
