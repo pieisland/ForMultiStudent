@@ -1,0 +1,41 @@
+<Guestbook service, serviceImpl 분석>200330 월요일
+데이터베이스를 사용하기 위해 어떻게 했는지를 찾아봄.
+보니까 service에서 거의 구현하고있음.
+그래서 guestbook의 service, serviceimpl을 보고 분석해봤음.
+
+GuestbookService에서 getGuestbooks라는 함수를 만들었고
+GuestbookServiceImpl에서 함수를 구현함.
+	public List<Guestbook> getGuestbooks(Integer start) {
+		List<Guestbook> list = guestbookDao.selectAll(start, GuestbookService.LIMIT);
+		return list;
+	}
+그리고 이 함수가 어디에서 불리냐를 봤더니
+
+GuestbookController에서 /list를 위해서
+		List<Guestbook> list = guestbookService.getGuestbooks(start);
+		이렇게 불렸음.
+그리고 그걸 모델 등록을 했고.
+list.jsp에서 그걸 바로 사용하는듯.
+
+<c:forEach items="${list}" var="guestbook">
+	${guestbook.id }<br>
+	${guestbook.name }<br>
+	${guestbook.content }<br>
+	${guestbook.regdate }<br>
+	<c:if test ="${sessionScope.isAdmin== 'true'}"> <a href="delete?id=${guestbook.id }">삭제</a><br><br></c:if>
+</c:forEach>
+엄청 간단히 사용함
+	
+이렇게 표기하는 게 el 표기법인데 
+servlet 버전 2.5보다 좋아야 인식되는 거였던 듯.
+그래서 3.1으로 web.xml에서 고쳤음.
+web.xml의 맨 처음에 2.3dtd 라고 되어있어서 인식이 안됐었다는 것.
+	
+selectAll은 GuestbookDao에서 만들었으며
+SELECT_PAGING는 GuestbookDaoSqls에 정의돼있음.
+	    public List<Guestbook> selectAll(Integer start, Integer limit) {
+	    		Map<String, Integer> params = new HashMap<>();
+	    		params.put("start", start);
+	    		params.put("limit", limit);
+	        return jdbc.query(SELECT_PAGING, params, rowMapper);
+	    }

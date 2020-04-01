@@ -1,0 +1,248 @@
+<Locker service, serviceImple 만들기>200330
+
+[패키지]
+kr.or.multi.multiCommunity.service
+kr.or.multi.multiCommunity.service.impl
+
+
+[LockerService애서 정의하고 LockerServiceImpl에서 구현]
+Service에서 interface라고 써줘야하고 ServiceImpl에서 implements라고 써줘야한다.
+정의돼있는 모든 메소드를 구현해야한다.
+@Service
+public class LockerServiceImpl implements LockerService{
+	@Autowired
+	LockerDao lockerDao;
+
+	//transactional을 붙이면 read only. 아니면 false를 붙여준다.
+	@Override
+	@Transactional
+	public List<Locker> getLockers() {
+		List<Locker> list = lockerDao.selectAll();
+		return list;
+	}
+}
+
+
+[LockerController에서 /locker를 위해서]
+	@Autowired
+	LockerService lockerService;
+	
+	@GetMapping(path="/locker")
+	public String locker(ModelMap model,
+			   HttpServletRequest request,
+			   HttpServletResponse response) {
+		
+		List<Locker> list = lockerService.getLockers();
+		model.addAttribute("list", list);
+		
+		return "locker";
+	}
+
+Autowired로 자동 등록되게 한 후에 사용해야한다.
+그리고 모델 등록하려면 ModelMap model을 써줘야겠지.
+request랑 response는 딱 보이게 쓰는 게 아니라서 써야되는건지 아닌지는 모르겠지만 써둠.
+	
+
+[<c:forEach> </c:forEach>]
+이게 뭐였더라.. 스크립틀릿이었나 기억이 안나기는 하는데..
+c를 사용해서 포문 돌리고 EL표기법($)으로 썼는데.
+사실 이렇게 하면 자바문법이 아니니까 내가 다루기가 힘들어서
+일단 써보기는 했지만 이렇게 안했음.
+<c:forEach items="${list}" var="locker">
+	${locker.lockerId }<br>
+	${locker.studentId }<br>
+</c:forEach>
+locker_id가 아니라 lockerId라고 해야된다. 우리가 자바에서 그렇게 정의를 해서그런것 같음.
+dto에서.
+사실 지금 데이터베이스에 접근을 하고있으니까 데이터베이스에서 쓰는대로 해야되나 했는데 아니더라고..
+
+
+[LockerDao의 selectAll도 정의해준다]
+private RowMapper<Locker> rowMapper = BeanPropertyRowMapper.newInstance(Locker.class);
+
+public List<Locker> selectAll(){
+	return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
+}	
+
+
+[LockerDaoSqls SELECT_ALL]
+public static final String SELECT_ALL = "SELECT * FROM locker";
+
+
+[LockerController]
+	@Autowired
+	LockerService lockerService;
+
+	@GetMapping(path="/myTest")
+	public String myTest() {
+	
+		List<Locker> list = lockerService.getLockers();
+		model.addAttribute("list", list);
+	
+		return "myTest";
+	}
+
+
+[myTest.jsp]
+아까 쓴거긴한데.
+<c:forEach items="${list}" var="locker">
+	${locker.locker_id }<br>
+	${locker.student_id }<br>
+</c:forEach>
+
+테스트한다고 index.jsp를 redirect="/myTest" 라고 바꾸고 해봄.
+
+
+생각해보니 내가 lockerController를 안만들고
+그냥 multiCommunityController에서 다 하고있다. 나중에 바꿔야되나..?
+몰라..
+
+
+[Bean이 없어서 생긴 오류]
+Bean 없다고 오류났는데 ApplicationConfig Componentscan에서 안적어준거였음.
+@ComponentScan(basePackages = { "kr.or.multi.multiCommunity.dao", "kr.or.multi.multiCommunity.service"})
+
+
+[jsp에 java 쓰기 위해 import하기]
+import java.util.List;
+import kr.or.multi.multiCommunity.dto.Locker;
+
+이렇게.
+<%@ page import = "java.util.List" %>
+<%@ page import = "kr.or.multi.multiCommunity.dto.Locker" %>
+
+
+[서버에서 가져온 값을 javascript에 변수로 주는 방법]
+그냥 스크립트 안에 <%= => 안에 <% %> 에서 자바 언어로 만든 변수 이름을 주면 된다.
+<script language=javascript>
+var name = "<%= name %>" ;
+</script>
+
+블로그에서 이렇게 설명해주심.
+<%
+String year = request.getParameter("year").trim();
+%>
+와 같이 파라미터 값을 받은후 이값을
+var name = <%=year%> ; 이런식으로 자바스크립트 변수에 지정할수 있다.
+
+이전 복습으로 for문을 쪼개서 이렇게 할 수 있음. 신기. 괄호를 쪼개서 닫아.
+<%
+for(int i = 1; i <= 5; i++){
+%>
+
+<H<%=i %>> 아름다운 한글 </H<%=i %>>
+<%
+}
+%>
+
+
+리스트 자체를 넣으면 이상하게 되더라.
+var jslist = [Locker [locker_id=1, student_id=2015112631, locker_available=true, locker_second_student_id=null], Locker [locker_id=2, student_id=2015112601, locker_available=true, locker_second_student_id=null], Locker [locker_id=26, student_id=2015112612, locker_available=false, locker_second_student_id=x]];
+이게 이런식으로 들어오는데 어떻게 해야되는가..
+json데이터도 아닌 것이.
+javascript에는 없는 타입이니까 이렇게 한 것 같은데?
+
+ 
+연습...
+
+	List<Locker> li= (List<Locker>)request.getAttribute("list");
+	int val;
+	String sid = "";
+	String lid = "";
+	int arr[] ={1, 2, 3};
+	String s = "love you ";
+	for(int i=0;i<li.size();i++){
+		val = li.get(i).getLockerId();
+		sid +=li.get(i).getStudentId();
+		lid += Integer.toString(val);
+		if(i!=li.size()-1){
+			sid +=" ";
+			lid +=" ";
+		}
+
+	//for(int i=0;i<list.length();i++)
+
+
+	var s = "<%=s %>";
+	var s2 = s.split(" ");
+	var sid= "<%=sid %>";
+	console.log(sid);
+	for(var i =0;i<s2.length;i++){
+		console.log(s2[i]);
+	}
+	//var jslist = <%=li %>;
+	//console.log(jslist);
+	//console.log(type(jslist));
+
+
+<% 
+	List<Locker> li= (List<Locker>)request.getAttribute("list");
+	int val;
+	String sid = "";
+	String lid = "";
+	int arr[] ={1, 2, 3};
+	String s = "love you ";
+	for(int i=0;i<li.size();i++){
+		val = li.get(i).getLockerId();
+		sid +=li.get(i).getStudentId();
+		lid += Integer.toString(val);
+		if(i!=li.size()-1){
+			sid +=" ";
+			lid +=" ";
+		}
+
+	//for(int i=0;i<list.length();i++)
+%>
+
+<%= val %>
+
+<% } %>
+
+
+[최종]
+자바.
+	<%
+		//남은 좌석 수를 표시하기 위해 위에 선언했다. 원래는 밑에 뒀었는데..
+		List<Locker> li= (List<Locker>)request.getAttribute("list");
+		int val;
+		int remainedLocker = 150 - li.size();
+		String sid = "";
+		String lid = "";
+		int arr[] ={1, 2, 3};
+		for(int i=0;i<li.size();i++){
+			val = li.get(i).getLockerId();
+			sid += li.get(i).getStudentId();
+			lid += Integer.toString(val);
+			
+			if(i!=li.size()-1){
+				sid +=" ";
+				lid +=" ";
+			}
+		}
+	%>
+
+스크립트.
+var sid= "<%=sid %>";
+var lid = "<%=lid%>";
+//var selected = [];
+sid = sid.split(" ");
+lid = lid.split(" ");
+for(var i = 0;i<sid.length;i++){
+	//String으로 저장했기 때문에 숫자로 변환한다. 자바스크립트에서 문자열을 숫자로 변환하는 것은 parseInt를 쓴다.
+	selectedOthersCabi.push(parseInt(lid[i]));
+}	
+
+
+[자바관련 알게된 것]
+- java list 사용법. list.get(인덱스); 하면 값을 사용할 수 있다.
+- String을 int형으로 바꾸는 법 Integer.toString(정수값); 으로 할 수 있다.
+- 문자열은 +로 연결할 수 있다.
+
+
+[자바스크립트관련 알게된 것]
+- 문자열.split("원하는 나누는 값"); 으로 그걸로 나눠진 리스트를 만들 수 있다.
+- 문자열을 숫자로 바꾸기. parseInt(스트링숫자값); 으로 문자열 숫자를 숫자로 바꿀 수 있다.
+
+
+솔직히 이 사람덕분에 해결한거
+http://egloos.zum.com/dreamform/v/2805065
