@@ -86,7 +86,7 @@ git merge upstream/master
 *merge 뒤에 오는 upstream/master는 upstream의 master브랜치를 의미한다.
 내가 합치고 싶은 내용을 가지고 있는 브랜치.
 
-+git push origin 브랜치이름
+그리고 git push origin 브랜치이름(나의 branch)
 을 해야 원격 저장소도 반영이 된다.
 
 *conflict가 발생했을 때
@@ -133,9 +133,11 @@ upstream에 변경하고 싶음을 알린다.
 이렇게 upstream 내용이 변경되면 나의 master 브랜치에 최신 사항을 업데이트 한다.
 (내가 알기론 master 브랜치는 upstream의 최신 사항을 가지고 있기 위함이고
 새로 만드는 branch는 내가 작업을 하기 위해서 만드는 걸로 알고있다.)
-git checkout master
-git fetch upstream
-git merge upstream/master
+위에서도 말했지만 다시 정리하자면,
+git checkout master (master branch로 이동)
+git fetch upstream (upstream의 최신 업데이트 내역 불러오기)
+git merge upstream/master (upsteam의 master branch의 업데이트 된 내용을 나의 master branch에 적용하기)
+git push origin master (원격 저장소에 반영하기)
 를 한다.
 
 내가 만든 iss1 브랜치를 iss2 브랜치에 반영하고싶으면
