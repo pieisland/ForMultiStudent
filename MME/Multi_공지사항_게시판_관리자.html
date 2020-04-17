@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>공지사항_게시판_관리자</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- <link rel="stylesheet" href="assets/css/bootstrap.css" /> -->
+		<style>
+
+			.elephant{
+				width:30%;
+				margin:0 auto;
+				text-align:center;
+			}
+			
+			.line{
+				
+				width:100%;
+				border: thin solid black;
+				float:left;
+				
+			}
+
+			#main-content-title{
+				margin: 0 0 3em 0;
+			}
+
+			#content select{
+				width:50%;
+				margin:0 auto;
+			}
+
+			#content textarea{
+				width : 100%;
+				margin:0 auto;
+			}
+			
+			table > th {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body class="is-preload homepage">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+
+						<!-- Logo -->
+							<div id="logo">
+								<a href="index.html">
+									<img src="./images/logo.png" alt="My Image" width="250" height="70">
+								</a>
+							</div>
+
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+									<li class="current">
+										<a href="index.html">공지사항</a>
+									</li>
+									<li>
+										<a href="#">신청</a>
+										<ul>
+											<li><a href="apply.html">사물함 신청</a></li>
+											<li><a href="#">MT 신청</a></li>
+										</ul>
+									</li>
+									
+									<li><a href="left-sidebar.html">건의사항</a></li>
+									<li><a href="right-sidebar.html">자유게시판</a></li>
+									<li class="login">
+									<li class="login"><a href="no-sidebar.html">관리자</a></li>
+									</li>
+								</ul>
+							</nav>
+
+					</header>
+				</div>
+
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div id="content" class="notice_board">
+							
+							<!--공지사항-->
+							<div class="row">
+								<div class="col-12" id="main-content-title">
+									<h1>공지사항</h1>
+								</div>
+							</div>
+
+							<!--옵션-->
+							<div class="row">
+								<div class="col-3">
+									<select class="form-control">
+									  <option>연도</option>
+									  <option>2</option>
+									  <option>3</option>
+									  <option>4</option>
+									  <option>5</option>
+									</select>
+									
+								</div>
+								<div class="col-3">
+									<select class="form-control">
+									  <option>제목</option>
+									  <option>2</option>
+									  <option>3</option>
+									  <option>4</option>
+									  <option>5</option>
+									</select>
+								</div>
+								<div class="col-6">
+										<input type="text" placeholder="  Search.." style="width: 70%">
+										<input type="submit" value="검색" style="width: 20%;">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 paragraph"></div>
+							</div>
+<br>
+							<!--DB-->
+							<div class="row">
+								<div class="col-12">
+									<table>
+										<thead>
+											<tr>
+												<th>번호</th>
+												<th>작성자</th>
+												<th>제목</th>
+												<th>날짜</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>관리자</td>
+												<td><a href="Multi_공지사항_글_관리자.html" style="text-decoration: none;">공지사항1</a></td>
+												<td>2020.04.10</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>관리자</td>
+												<td>공지사항2</td>
+												<td>2020.04.08</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>공지사항3</td>
+												<td>테스트래요</td>
+												<td>2020.04.06</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-12" align="right">
+								<input type="submit" value="삭제" style="width:10%">&nbsp;&nbsp;
+								<a href="Multi_공지사항_등록_관리자.html"><input type="submit" value="글쓰기" style="width:15%"></a>
+								</div>	
+							</div>
+							
+<br>
+							<!--쪽수-->
+							<div class="row">
+								<div class="col-12">
+									쪽수
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			<!-- Footer -->
+				<div id="footer-wrapper" style="text-align: center">
+					<footer id="footer" class="container">
+						<div class="row">
+							
+							<div class="col-12">
+								<div class="hr-sect"><img src="images/ele.svg"></div><br>
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-4 col-6-medium col-12-small">
+
+								<!-- Links -->
+									<section class="widget links">
+										<h3>학과 Info.</h3>
+										<ul class="style2">
+											<li><a href="#">번호 : 02-2260-8760</a></li>
+											<li><a href="#">주소 : (변경예정)</a></li>
+										</ul>
+									</section>
+
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+
+								<!-- Links -->
+									<section class="widget links">
+										<h3>학생회 Info.</h3>
+										<ul class="style2">
+											<li><a href="#">학생회장 : 010-9215-5644</a></li>
+											<li><a href="#">부학생회장 : 010-5620-2869</a></li>
+											<li><a href="#">과실 위치 : 원흥관 2층 E267</a></li>
+										</ul>
+									</section>
+
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+
+								<!-- Links -->
+									<section class="widget links">
+										<h3>SNS</h3>
+										<ul class="style2">
+											<li><a href="https://ko-kr.facebook.com/people/%EB%8F%99%EA%B5%AD%EB%A9%80%ED%8B%B0/100006257864438">facebook</a></li>
+											<li><a href="https://cafe.naver.com/dgumulti">naver cafe</a></li>
+											<li><a href="https://pf.kakao.com/_HQVud">kakao</a></li>
+										</ul>
+									</section>
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; Untitled. All rights reserved</li>
+										<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+										<li>Font : <a href="https://noonnu.cc/font_page/407">tt투게더</a></li>
+										<li>Develop: 류남광, 박은희, 최정선, 최희수</li>
+										<li>Thanks to : 백민주</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
