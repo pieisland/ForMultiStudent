@@ -1,0 +1,50 @@
+지금까지 만든 table 총 5개.
+1.admin - 관리자가 변경하는 텍스트 저장. 
+mt나 사물함 신청일에 대한거나, mt 상세정보 등을 변경할 때
+그 내용을 가지고 있어야 변경 상태가 유지되므로 만든 table.
+create table admin(
+	area varchar(20) primary key,
+	content text
+);
+
+2.imgdata - mt 바꿀 이미지에 대한 정보를 가지고 있는 table.
+다른 데서도 이미지 저장해야되면 여기다 저장하면 됨.
+배너이미지라거나.
+create table imgdata
+(
+	img_id varchar(20) primary key,
+	img_name varchar(200),
+	save_img_name varchar(200),
+	content_type varchar(20),
+	file_length integer
+);
+
+3.locker - 사물함 신청 정보를 저장하는 table.
+create table locker(
+	locker_id INTEGER NOT NULL PRIMARY KEY,
+	student_id VARCHAR(20) FOREIGN KEY,
+	locker_available VARCHAR(20) DEFAULT 'true',
+	locker_second_student_id VARCHAR(20)
+);
+
+4.mt - mt 신청 정보를 저장하는 table.
+폰 번호를 primary key로 만들었었는데 좀 이상하긴 해요.
+create table MT (
+	phone_number VARCHAR(20) PRIMARY KEY,
+	departure_time VARCHAR(20),
+	student_id VARCHAR(20),
+	FOREIGN KEY(student_id) REFERENCES student(student_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+5.student - 학생 정보를 저장하는 table.
+create table STUDENT(
+	student_id VARCHAR(20) NOT NULL PRIMARY KEY,
+	student_name VARCHAR(20),
+	student_join_date DATETIME
+);
+
+저는 일단 혼자 local에서 돌릴 때 이렇게 만들었어요.
+이정도는 필요하겠다 생각하고 만든거라서 더 필요한 것도 있을거고
+불필요한 것도 있을거에요.
+은희가 db 설계 해온거랑 비교해서
+살릴 거는 살리고 고칠 거는 고치면 될 것 같아요.
