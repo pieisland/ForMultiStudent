@@ -21,32 +21,24 @@
 		<link rel="stylesheet" href="resources/assets/css/main.css" />
 		<link rel="stylesheet" href="resources/assets/css/myboot.css"/>
 		<link rel="stylesheet" href="resources/assets/css/mt_namgwang.css"/>
-<!--
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
-				
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<!--
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		-->
 		
-		
+		<!-- 200721 jquery 관련 -->			
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>			
 	</head>
+	
 	<body class="is-preload no-sidebar">
 	
 	<% 
 		List<MT> li = (List<MT>)request.getAttribute("mtlist");
 		
-		//쓰잘데기없는데....
-		/*String mtinfo = (String)request.getAttribute("mtinfo");	
-		mtinfo = mtinfo.replaceAll("\n", "<br/>");
-		
-		String mtDay = (String)request.getAttribute("mtDay");	
-		mtDay = mtDay.replaceAll("\n", "<br/>");
-		*/
-		
 		//200416
 		String mtimgpath = (String)request.getAttribute("mtimgpath");
 		
-		//이ㅣ거 안됐던 것 같은데요..ㅋㅋㅋ 오류났던 걸로 기억해.
 		String val = (String)session.getAttribute("loginedStudentId");
 		String sid = "";
 		String isApplyed = "-1";
@@ -61,21 +53,7 @@
 	%>
 
 	<% 
-		//신청일인지 아닌지를 판단하기.
-		/*Date nowDate = new Date();
-		Date applyStart = (Date)request.getAttribute("applyStart");	
-		Date applyEnd = (Date)request.getAttribute("applyEnd");	
-	
-		String msg;
-		//진짜 이렇게 하면 되겠찌?
-		if(applyStart.getTime()<= nowDate.getTime() && nowDate.getTime()<=applyEnd.getTime()){
-			msg = "신청기간이에요.";
-		}
-		else msg = "신청 기간이 아니에요.";*/
 		String area = (String)request.getAttribute("area");
-		System.out.println("area 값은 다음과 같다: " + area);
-		System.out.println("area 값은 다음과 같다: " + area);
-		System.out.println("area 값은 다음과 같다: " + area);
 		String mtTitle = (String)request.getAttribute("mtTitle");
 		String mtContent = (String)request.getAttribute("mtContent");
 		mtContent = mtContent.replaceAll("\n", "<br/>");
@@ -106,16 +84,6 @@
 			msg = "※신청 기간이 아닙니다.";
 			dateCheck=0;
 		}
-		/*Date applyStart = new Date(st.getTime());
-		Date applyEnd = new Date(et.getTime());
-		Date nowDate = new Date();
-		
-		//진짜 이렇게 하면 되겠찌?
-		if(applyStart.getTime()<= nowDate.getTime() && nowDate.getTime()<=applyEnd.getTime()){
-			msg = "신청 가능합니다.";
-		}
-		else
-			msg = "신청 불가해요...";	*/
 	%>
 
 		<div id="page-wrapper">
@@ -125,74 +93,53 @@
 					<header id="header" class="container">
 
 						<!-- Logo -->
-							<div id="logo">
-								<a href="index.html">
-									<img src="resources/images/logo.png" alt="My Image" width="350" height="100">
-								</a>
-							</div>
+						<div id="logo">
+							<a href="index.html">
+								<img src="resources/images/logo.png" alt="My Image" width="350" height="100">
+							</a>
+						</div>
 
 						<!-- Nav -->
-							<nav id="nav">
-								<ul>								
-									<li>
-										<a href="index.html">공지사항</a>
-									</li>
-									<li class="current">
-										<a href="#">신청</a>
-										<ul>
-											<!-- Mt 신청은 여기서 안한다고 했었나..? ㅠㅠ -->
-											<li><a href="locker">사물함 신청</a></li>
-											<li><a href="mt">MT 신청</a></li>
-											<!--
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											
-											<li><a href="#">Veroeros feugiat</a></li>
-											-->
-										</ul>
-									</li>
-									<li><a href="left-sidebar.html">건의사항</a></li>
-									<li><a href="right-sidebar.html">자유게시판</a></li>
-									<!-- class="current" 이면 검은색으로 되는 것 같은데. 
-										하면서 느끼는건데 이거.. 되게 바꾸면서 난리 엄청 날 것 같음 ㅋㅋㅋ..
-									-->
-									<li class="login">								
-										<c:choose>
-										    <c:when test="${sessionScope.isLogin== 'true'}">
-												<a href="#">${sessionScope.loginedStudentName}</a>
-												<ul>
-													<li><a href="mypage">마이페이지</a></li>
-													<li><a href="logout">로그아웃</a></li>
-												</ul>																							
-											</c:when>
-
-										    <c:otherwise>
-										    	<button type="button" class="btn btn-primary" style="background: #3A3A3A; border-color: #3A3A3A;" data-toggle="modal" data-target="#myModal">
-	 												Login
-												</button>													
-										        <!-- <a href="loginform">로그인</a> -->								      
-										    </c:otherwise>
-										</c:choose>
-									
-									<!--
-									<a href="loginform">로그인</a>
-									-->									
-									</li>
-								</ul>
-							</nav>
-
+						<nav id="nav">
+							<ul>							
+								<li>
+									<a href="index.html">공지사항</a>
+								</li>
+								<li class="current">
+									<a href="#">신청</a>
+									<ul>											
+										<li><a href="locker">사물함 신청</a></li>
+										<li><a href="mt">MT 신청</a></li>											
+									</ul>
+								</li>
+								<li><a href="left-sidebar.html">건의사항</a></li>
+								<li><a href="right-sidebar.html">자유게시판</a></li>
+								<!-- class="current" 이면 검은색으로 되는 것 같은데. 
+									하면서 느끼는건데 이거.. 되게 바꾸면서 난리 엄청 날 것 같음 ㅋㅋㅋ..
+								-->
+								<li class="login">								
+									<c:choose>
+									    <c:when test="${sessionScope.isLogin== 'true'}">
+											<a href="#">${sessionScope.loginedStudentName}</a>
+											<ul>
+												<li><a href="mypage">마이페이지</a></li>
+												<li><a href="logout">로그아웃</a></li>
+											</ul>																							
+										</c:when>
+									    <c:otherwise>
+									    	<button type="button" class="btn btn-primary" style="background: #3A3A3A; border-color: #3A3A3A;" data-toggle="modal" data-target="#myModal">
+ 												Login
+											</button>													
+									        <!-- <a href="loginform">로그인</a> -->								      
+									    </c:otherwise>
+									</c:choose>							
+								</li>
+							</ul>
+						</nav>
 					</header>
 				</div>
 
-			<!-- Main -->	
-
+				<!-- Main -->	
 				<div class="mycontainer" style ="background-color: white; margin-bottom:30px;">
 					<div class = "myrow">
 						<!-- 딱 붙이고싶으면 mycol-xs-12만 남기고 지우면 됩니다. -->
@@ -206,11 +153,6 @@
 					<div class="myrow notice">
 						<br>
 				        <div class="mycol-md-10 mycol-md-offset-1 mycol-xs-12">
-				      		<!-- 200621 
-				      		생가해보니 이거는 사실 수정 버튼을 눌렀을 때 나와줘야겠죠.
-				      		원래 하나하나씩 만들어두긴 했는데 좀 에바인 것 같기도 해서.
-				      		그리고 뭐 날짜 관리하려면.. 필요하긴 해요.
-				      		-->
 				      		<div> 				      		
 				      			<h3><%=mtTitle%><br></h3>
 				      			신청 일시: <%=startStr%> ~ <%=endStr%><br>
@@ -238,7 +180,7 @@
 						</div>
 					</div>
 
-					<!-- 200621 일단 지울게요... -->
+					<!-- 200621 일단 작동은 안되구요. 경로 얻는 것 때문에 다음에 확인할 일이 있어서 지우지는 않을게요. -->
 				  	<c:if test="${sessionScope.loginedStudentName=='관리자2'}">
 						<div class="myrow" style="margin-top:10px">
 							<div class="mycol-md-11 mycol-md-offset-1">
@@ -289,10 +231,6 @@
 
 						<div class="mycol-md-4 mycol-sm-4 mycol-xs-12" style="text-align:center; margin-bottom:20px;">
 							<span class="fontBold">선후발 선택</span><br>
-							<!-- 도대체가 말이야. input type으로 만든 버튼에 대해서는 텍스트 정렬을 지가 고정으로 해놓은 것 같다고.
-							<input type="button" name="priority" value="선발" style="background-color: grey; width:70px; text-align:center;" >
-							<input type="button" name="priority" value="후발">
-							<br>-->
 							<div style="margin:0 auto; width:200px; margin-top:10px;" id="departureTime" >
 								<div style="width:80px; height:40px; color:black; cursor: pointer; margin-right:30px; border:1px solid grey; display:inline-block;" class="depTime" id = "advance"><p style="margin-top:10px; margin-bottom:20px; ">선발</p></div>	
 								<div style="width:80px; height:40px; color:black; cursor: pointer; border:1px solid grey; display:inline-block;" class="depTime" id = "late"><p style="margin-top:10px">후발</p></div>
@@ -300,11 +238,6 @@
 						</div>
 						
 						<div class="mycol-md-3 mycol-sm-4 mycol-xs-12">
-							<!-- 
-							<div style="margin:0 auto; width:185px; border:1px solid red;">
-								<input type="button" value = "신청하기" data-toggle="modal" data-target="#MTapply" style="width:180px;">
-							</div>
-							-->
 							<br>
 							<div style="margin:0 auto; width:185px; ">
 								<input type="button" value = "신청하기" id= "MTapplyBtn" style="width:180px;" type="submit">
@@ -313,7 +246,7 @@
 						</form>
 					</div>
 
-					<!--굳이 여기 할 필요없이 정보에 쓰면 될 것 같은데? 그러면 관리도 더 쉬울 듯. -->
+					<!--굳이 여기 할 필요없이 정보에 쓰면 될 것 같은데? 그러면 관리도 더 쉬울 듯. 하지만 그냥 둬도 될 것 같음. -->
 					<div class="myrow">
 						<div class="mycol-md-10 mycol-md-push-1 mycol-xs-12" style="margin-bottom:20px;">
 							<p style="color:red">※주의사항</p>
@@ -350,7 +283,7 @@
 						</div>
 					</c:if>    
 					
-					<!-- 200621 수정할 페이지로 이동한다고 생각. -->
+					<!-- 200621 수정할 페이지로 이동함. -->
 					<c:if test="${sessionScope.loginedStudentName=='관리자'}">
 						<div class="myrow" style="margin:10px 0;">
 							<div class="mycol-md-2 mycol-md-offset-10">
@@ -361,6 +294,7 @@
 						</div>
 					</c:if>  
 					
+					<!-- 로그인 모달 두 개. 하나는 일반적으로 쓰는 걸로 했고 하나는 제이쿼리로 했는데 동작 받식이 다르기 때문에 같이 생겼지만 두 개 쓰기로 함. -->
 					<!-- 위에 로그인 모달. -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
@@ -442,16 +376,13 @@
 			<!-- Footer -->
             <div id="footer-wrapper" style="text-align: center">
                <footer id="footer" class="container">
-                  <div class="row">
-                     
+                  <div class="row">             
                      <div class="col-12">
                         <div class="hr-sect"><img src="resources/images/ele.svg"></div><br>
                      </div>
-                     
                   </div>
                   <div class="row">
                      <div class="col-4 col-6-medium col-12-small">
-
                         <!-- Links -->
                            <section class="widget links">
                               <h3>학과 Info.</h3>
@@ -460,10 +391,9 @@
                                  <li><a href="#">주소 : (변경예정)</a></li>
                               </ul>
                            </section>
-
                      </div>
+                     
                      <div class="col-4 col-6-medium col-12-small">
-
                         <!-- Links -->
                            <section class="widget links">
                               <h3>학생회 Info.</h3>
@@ -473,7 +403,6 @@
                                  <li><a href="#">과실 위치 : 원흥관 2층 E267</a></li>
                               </ul>
                            </section>
-
                      </div>
                      <div class="col-4 col-6-medium col-12-small">
 
@@ -486,7 +415,6 @@
                                  <li><a href="https://pf.kakao.com/_HQVud">kakao</a></li>
                               </ul>
                            </section>
-
                      </div>
                   </div>
                   <div class="row">
@@ -507,20 +435,19 @@
 		</div><!-- 맨 처음입니다.-->
 
 		<!-- Scripts -->
-
 			<script src="resources/assets/js/jquery.min.js"></script>
 			<script src="resources/assets/js/jquery.dropotron.min.js"></script>
 			<script src="resources/assets/js/browser.min.js"></script>
 			<script src="resources/assets/js/breakpoints.min.js"></script>
 			<script src="resources/assets/js/util.js?ver=123"></script>
 			<script src="resources/assets/js/main.js"></script>
-
+			
 		<!-- 내 함수들-->
 			<script>
 			
 			    var my_id;
 				<c:choose>
-					<c:when test="${sessionScope.isLogin== 'true'}">
+					<c:when test="${sessionScope.isLogin == 'true'}">
 						my_id = "${sessionScope.loginedStudentId}";
 					</c:when>
 	
@@ -543,7 +470,7 @@
 				if(my_id === "-1"){
 					mtbtn.disabled="true";
 					mtbtn.style.backgroundColor="grey";
-					mtbtn.value ="로그인 필요";//ㅋㅋ 버튼 길이떄문에..ㅋㅋㅋ 짧아야할 듯.
+					mtbtn.value ="로그인 필요";
 				}
 				else if(my_id==="admin"){
 					mtbtn.disabled = "true;"
@@ -559,18 +486,6 @@
 					}
 				}
 				
-				//200623 만약 신청일이 아니라면 버튼을 비활성화.
-				//이게 근데 이렇게 하면.. 로그인이 필요하다는 정보도 덮어쓰기때문에
-				//if문을 어떻게 짜는 게 더 좋을직 고민해야될 것 같아요.
-				//지금 드는 생각으로는.. 신청일이면 로그인 필요 같은 게 나오게 하고.. 신청일이 아니면 기본적으로 신청일 아니라고 하기..?
-				//그러면 지금 짜둔걸로 해도 되기는 하지만 불필요하게 덮어쓰는 게 있어서 그렇게 좋은 것 같지는 않네요.
-				//신청 완료에 대한것도 신청일이 아니라면 안보이는거라 뭐가 더 나을지가..애매하네.
-				/*if(dt === 0){
-					mtbtn.disabled = "true;"
-					mtbtn.style.backgroundColor="grey";
-					mtbtn.value = "신청일 아님";
-				}*/
-				
 				//신청 시에 막는건 데이터베이스에서 값을 가져와서 처리하는 걸로 함.
 				if(isApplyed === "1"){
 					mtbtn.disabled="true";
@@ -581,8 +496,6 @@
 				//선발이나 후발 클릭한 것에 따라 색을 변경한다.
 				function depbtnColorChange(val){
 					console.log("함수호출");
-					//var child = depbtn.childNodes;
-					//console.log(child);
 					var ad = document.querySelector("#advance");
 					var la = document.querySelector("#late");
 		
@@ -673,63 +586,7 @@
 			    	document.body.appendChild(form);
 			    	form.submit();
 			    }				
-				
-				//admin계정으로 로그인 했을 때 MT 상세 정보를 수정할 수 있음.
-				//---안씀---
-				function updateMT(){
-					console.log("값 수정");
-					
-					//dom tree에서 값을 가져오면 되는거였다.
-					var info = document.querySelector("#mtInfo").innerText;
-					console.log(info);
-					
-					var form = '<form action="updatemt" method="post" id="updateform"> <div class="inputWrap"> <input type="hidden" name="area" value="mt">';
-					form += '<div> <span> 내용 </span> <textarea cols="10" rows="5" name="content">';
-					form += info;
-					form += '</textarea><br/></div> </div>';
-					form += '<input class="updatebtn" type="submit" value ="수정 완료"> </form>';
-				    
-				    var target = document.querySelector("#mtInfo");
-				    target.innerHTML = form;
-				}
-				
-				//MT 날짜, 신청일 정보를 수정.
-				//----안씀----
-			    function updateMTDay(){
-					var info = document.querySelector(".mtday").innerText;
-					console.log(info);
-						
-					var form = '<form action="updateMTDay" method="post"> <div class="inputWrap"> <input type="hidden" name="area" value="mtDay">';
-					form += '<div> <span> 내용 </span> <textarea cols="15" rows="2" name="content">';
-					form += info;
-					form += '</textarea><br/></div> </div>';
-					form += '<input type="submit" value ="수정 완료"> </form>';	    
-					    
-				    var target = document.querySelector(".mtday");
-				    target.innerHTML = form;
-			    }		
-				
-				//200621
-				//---안씀---
-				function modifyMT(){
-					//필요한 정보는 1. title 2. content...
-					//음 딱히 필요 없을 것 같기도 하네.
-					//왜냐면 그냥 데이터베이스에서 다시 찾으면 되니까...
-					//area만 가지고 있으면 될 듯.
-					
-					var form = document.createElement("form");
-			    	form.setAttribute("method", "Post");
-			    	form.setAttribute("action", "modifyMT");
-			    	  
-			    	var hiddenField = document.createElement("input");
-			    	hiddenField.setAttribute("name", "area");
-			    	hiddenField.setAttribute("value", area);
-			    	form.appendChild(hiddenField);
-
-			    	document.body.appendChild(form);
-			    	form.submit();
-				}
-			   			
+			
 				//200628. 이미지 클릭 시 원본 크기로 보기.
 				var img = document.getElementById("mtimg");
 				img.onclick = function() {window.open(this.src)};
@@ -738,8 +595,7 @@
 				}*/
 			</script>
 
-		
-		<!--  제이쿼리 -->
+			<!-- 제이쿼리로 모달 열기. -->
 		    <script>
 		        $(document).ready(function() {
 		            $("#modal_show").click(function() {
@@ -751,18 +607,11 @@
 		            });
 		        });
 		    </script>
-
-    	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-   		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  		
-			<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  		
-  		
-  		
-  		
+	
+	    	<!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	    	<!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+	   		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	</body>
 </html>
