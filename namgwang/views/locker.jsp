@@ -121,11 +121,7 @@
 
 						<!-- Nav -->
 							<nav id="nav">
-								<ul>
-									<li>
-										<a href="#" onclick="popup()">팝업테스트</a>
-									</li>
-								
+								<ul>							
 									<li>
 										<a href="index.html">공지사항</a>
 									</li>
