@@ -21,15 +21,14 @@
 		<link rel="stylesheet" href="resources/assets/css/main.css" />
 		<link rel="stylesheet" href="resources/assets/css/myboot.css"/>
 		<link rel="stylesheet" href="resources/assets/css/locker_namgwang.css"/>	
-<!--
+		
+		<!--
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/stove99/jquery-modal-sample@v1.4/css/animate.min.css" />
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/stove99/jquery-modal-sample@v1.4/css/jquery.modal.css" />
--->
-	
+		-->
 	</head>
+	
 	<body class="is-preload no-sidebar">
 	<%
 		//남은 좌석 수를 표시하기 위해 위에 선언했다. 원래는 밑에 뒀었는데..
@@ -52,22 +51,9 @@
 	%>
 
 	<% 
-		//신청일인지 아닌지를 판단하기.
-		/*Date nowDate = new Date();
-		Date applyStart = (Date)request.getAttribute("applyStart");	
-		Date applyEnd = (Date)request.getAttribute("applyEnd");	
-	
-		String msg;
-		//진짜 이렇게 하면 되겠찌?
-		if(applyStart.getTime()<= nowDate.getTime() && nowDate.getTime()<=applyEnd.getTime()){
-			msg = "신청기간이에요.";
-		}
-		else msg = "신청 기간이 아니에요.";*/
 		String area = (String)request.getAttribute("area");
 		String title = (String)request.getAttribute("title");
-		//String mtContent = (String)request.getAttribute("mtContent");
-		//mtContent = mtContent.replaceAll("\n", "<br/>");
-		
+
 		String msg=" ";
 		Timestamp stamp = new Timestamp(System.currentTimeMillis());
 		Timestamp st = (Timestamp)request.getAttribute("applyStart");
@@ -94,20 +80,9 @@
 			msg = "※신청 기간이 아닙니다.";
 			dateCheck=0;
 		}
-		/*Date applyStart = new Date(st.getTime());
-		Date applyEnd = new Date(et.getTime());
-		Date nowDate = new Date();
-		
-		//진짜 이렇게 하면 되겠찌?
-		if(applyStart.getTime()<= nowDate.getTime() && nowDate.getTime()<=applyEnd.getTime()){
-			msg = "신청 가능합니다.";
-		}
-		else
-			msg = "신청 불가해요...";	*/
 	%>
 
 		<div id="page-wrapper">
-		
 			<!-- Header -->
 				<div id="header-wrapper">
 					<header id="header" class="container">
@@ -121,29 +96,15 @@
 
 						<!-- Nav -->
 							<nav id="nav">
-								<ul>							
+								<ul>								
 									<li>
 										<a href="index.html">공지사항</a>
 									</li>
 									<li class="current">
 										<a href="#">신청</a>
 										<ul>
-											<!-- Mt 신청은 여기서 안한다고 했었나..? ㅠㅠ -->
 											<li><a href="locker">사물함 신청</a></li>
 											<li><a href="mt">MT 신청</a></li>
-											<!--
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Lorem ipsum dolor</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-												</ul>
-											</li>
-											
-											<li><a href="#">Veroeros feugiat</a></li>
-											-->
 										</ul>
 									</li>
 									<li><a href="left-sidebar.html">건의사항</a></li>
@@ -151,8 +112,7 @@
 									<!-- class="current" 이면 검은색으로 되는 것 같은데. 
 										하면서 느끼는건데 이거.. 되게 바꾸면서 난리 엄청 날 것 같음 ㅋㅋㅋ..
 									-->
-									
-									
+																		
 									<!-- 은희가 한 부분 조금 번경한거고. -->
 									<li class="login">
 										<!-- <a href="#myModal" role="button" class="btn btn-default" data-toggle="modal" >로그인</a> -->
@@ -170,15 +130,8 @@
 										        <button type="button" class="btn btn-primary" style="background: #3A3A3A; border-color: #3A3A3A;" data-toggle="modal" data-target="#myModal">
 	 												Login
 												</button>	
-												
-								
-												<!-- <button type="button" class="btn btn-primary" id="modal_show">로그인1</button> -->
-																      
 										    </c:otherwise>
 										</c:choose>	
-										
-										
-										<!--  <p> <a href="#" data-toggle="modal" data-target="#log"> test modal open </a> </p>	-->														
 									</li>									
 								</ul>
 							</nav>	
@@ -209,13 +162,13 @@
 				        </div>				        
 				    </div>
 
-				      <div class="myrow">
-				        <!-- 작은 모니터 사이즈 이상에서만 두 개로 보입니다. -->
+				    <div class="myrow">
+						<!-- 작은 모니터 사이즈 이상에서만 두 개로 보입니다. -->
 				        <!-- 사물함배치도 -->
 				          <div class="mycol-md-4 mycol-md-push-7 frame">
 				            <div class="myrow bg-info">
 				              <div class="text-center" style="height:40px; margin:20px 0px;  font-size:2em;"> 
-				                사물함 배치도
+				                	사물함 배치도
 				              </div>
 				            </div>
 				            <br>
@@ -240,26 +193,15 @@
 				            </div>
 
 				            <div class="myrow" style="margin-top:30px; margin-left:10px; margin-right:10px;">
-				              <div class="mycol-xs-4">
-				                <button type = "button" data-toggle="modal" class="btn btn-danger btn-block" href="#" role="button" data-target="#attention">주의사항</button>
-				              </div>
-				              <div class="mycol-xs-8">
-				                <button type = "button" data-toggle="modal" class="btn btn-primary btn-block" type="submit" data-target="#applyLocker" id="applyBtn">사물함 신청하기</button>
-				              </div>
-								        
-								<!-- 
-						        	왜 얘만 나오지
-						        	얘는 버튼이랑 a랑 같이 있어도 문제 없는데..
-						        	위에걸 버튼으로 한다해도 네비게이션에서 아무것도 안되니까 문제지.
-						        <a data-toggle="modal" href="#log">a modal</a>
-				         		-->
-				         		
-				     										
-				   			         		
-				         		
+								<div class="mycol-xs-4">
+				                	<button type = "button" data-toggle="modal" class="btn btn-danger btn-block" href="#" role="button" data-target="#attention">주의사항</button>
+				              	</div>
+				              	<div class="mycol-xs-8">
+				               		<button type = "button" data-toggle="modal" class="btn btn-primary btn-block" type="submit" data-target="#applyLocker" id="applyBtn">사물함 신청하기</button>
+				              	</div>
 				            </div>
 
-				              <!--주의사항 모달-->
+				            <!--주의사항 모달-->
 				            <div class="modal fade" id="attention" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				               <div class="modal-dialog">
 				                 <div class="modal-content">
@@ -268,7 +210,7 @@
 				                     <h4 class="modal-title" id="myModalLabel">주의사항</h4>
 				                   </div>
 				                   <div class="modal-body">
-				                      <!--날짜 정보가 들어가야합니다. 음...-->
+				                      <!--날짜 정보 굳이 안들어가도 될 것 같아서 그냥 지워버렸다. -->
 				                      [사물함 신청 안내 및 주의사항]<br>
 				                      -학생회비 납부자에 한해 무료입니다.<br>
 				                      	휴학생과 학생회비 비납부자에게는  사물함 배정을 하지 않습니다.<br><br>
@@ -283,7 +225,7 @@
 				               </div>
 				             </div>
 
-				              <!--..아 모달이 필요한가 생각해보니까.. 그냥 알러트 하면 되는 거 아님? 암튼 일단은 신청 모달임.-->
+				            <!--..아 모달이 필요한가 생각해보니까.. 그냥 알러트 하면 되는 거 아님? 암튼 일단은 신청 모달임.-->
 				            <div class="modal fade" id="applyLocker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				              <div class="modal-dialog">
 				                <div class="modal-content">
@@ -301,30 +243,6 @@
 				                </div>
 				              </div>
 				            </div>
-				            
-				            <!-- 200715 모달.. 로그인 하려고 하는데 잘 안되는데 이유가 뭐임..? -->
-				            <div class="modal fade" id="log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				              <div class="modal-dialog">
-				                <div class="modal-content">
-				                  <div class="modal-header">
-				                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				                    <h4 class="modal-title" id="myModalLabel">사물함 신청</h4>
-				                  </div>
-				                  <div class="modal-body modal-ask">
-				                        	복이가 많이 귀엽나요?
-				                  </div>
-				                  <div class="modal-footer">
-				                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="myAlert()">예</button>
-				                    <button type="button" class="btn btn-primary" data-dismiss="modal">아니요</button>
-				                  </div>
-				                </div>
-				              </div>
-				            </div>
-				            
-		
-
-
-	            
 				          </div>
 				          
 				          <div class="mycol-md-6 mycol-md-pull-3 frame">
@@ -347,9 +265,9 @@
 				              </div>
 				            </div>
 				          </div><!-- col-md-5 -->
-
 				      </div><!--row-->
-				      
+				     
+				     <!-- 관리자일 때 신청 결과를 모두 삭제할 수 있습니다. 데이터베이스에서 삭제됨. -->
 				    <c:if test="${sessionScope.loginedStudentName=='관리자'}">
 						<div class="myrow" style="margin:10px 0;">
 							<div class="mycol-md-2 mycol-md-offset-10">
@@ -370,8 +288,7 @@
 							</div>
 						</div>
 					</c:if> 					
-					
-					
+							
 					<!-- 위에 로그인 모달. -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
@@ -408,8 +325,7 @@
 					    </div>
 					  </div>
 					</div>				            
-						            
-							  
+						            				  
 					<!-- 제이쿼리 로그인 모달. -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				        <div class="modal-dialog" role="document">
@@ -454,12 +370,10 @@
 			<!-- Footer -->
             <div id="footer-wrapper" style="text-align: center">
                <footer id="footer" class="container">
-                  <div class="row">
-                     
+                  <div class="row">                
                      <div class="col-12">
                         <div class="hr-sect"><img src="resources/images/ele.svg"></div><br>
                      </div>
-                     
                   </div>
                   <div class="row">
                      <div class="col-4 col-6-medium col-12-small">
@@ -528,7 +442,8 @@
 			<script src="resources/assets/js/util.js?ver=1"></script>
 			<script src="resources/assets/js/main.js"></script>
 			<script src="resources/assets/js/locker_namgwang.js"></script>
-
+		    
+		    <!-- 내 스크립트. -->
 		    <script>
 			  var my_id;
 				<c:choose>
@@ -539,8 +454,7 @@
 					<c:otherwise>
 						my_id = "-1";
 					</c:otherwise>
-				</c:choose>
-			  //console.log("my_id : " + my_id);
+				</c:choose>			  
 
 		      var isSelpos = 1; //사물함을 이미 신청했는지 아닌지를 확인하기 위한 변수.
 		      var selNum = -1; //이전에 선택한 개별 사물함 번호.
@@ -675,26 +589,6 @@
 			    var applyBtn = document.querySelector("#applyBtn");
 
 		        showLocker(0);
-		        /*var isDay = document.querySelector(".regiDay");
-		        var year = new Date().toISOString().slice(0,4);
-		        var month = new Date().toISOString().slice(5,7);
-		        var day = new Date().toISOString().slice(8, 10)
-		
-		        console.log(year);
-		        console.log(month);
-		        console.log(day);
-		
-		        //아니면 굳이 이렇게 하지않고 날짜가 되면 관리자가 바꿔줘도 될듯..
-		        //여기에 사실 함수(날짜가 맞는지 확인하는 함수 등..)
-		        if(1){
-		          isDay.innerHTML = "오늘은 신청일 입니다.";
-		        }
-		        else
-		        {
-		          isDay.innerHTML = "오늘은 신청일이 아닙니다.";
-		          applyBtn.disabled = "true;"
-		          //사실 신청하기 버튼도 비활성화 해야하는 걸로 압니다. 이거 날짜 어떻게 하지..?
-		        }*/
 
 		        //로그인을 하지 않았다면 사물함을 신청할 수 없다.
 		        if(my_id == "-1"){
@@ -812,21 +706,6 @@
 		          //얘도 마찬가지..ㅋㅋ 서버에서 할 땐 의미없다. 새로고침하면 없어짐. 여기서 저장한건.
 		          selectedMyLocker = selNum;
 		         
-		         //0405. redirect 완료 전에 값을 가져올 수 없어서 결국 다 주석처리함.
-		         /*var possible = "${lockerApplyPos}";//과연 이게 될 것인가. 안됩니다...
-		         if(possible == 1){
-		          var content = selNum + "번 사물함 신청이 완료되었습니다. 오바오바";
-		          alert(content);
-		         }
-		         else if(possible== -1){
-		         	var content = "이미 신청 완료된 좌석입니다. ㅇㅇ..";
-		         	alert(content);
-		         }
-		         else if(possible == 0){
-			          var content = "아니 설마 여기라구요..????";
-			          alert(content);
-		         }*/
-		         
 		          //함수를 호출하고나서야 하는걸로 일단 바꿔봤습니다.
 		          //이것도 사실 나중에서는 필요없는 거 아니니?
 		          selNum = -1;
@@ -847,37 +726,7 @@
 		
 		      //처음에 함수를 호출.
 		      init();
-		      //if(isSelpos == 0) cancelLocker();
-		
-		      /*
-				해야할 것. 오늘은 03 30 
-				-로그인 구현해서 신청했을 때 데이터베이스에 저장되고 내 사물함 노란색으로 바꾸는 거.
-				다른 사람들에게는 파란색으로 보이겠지만 나한테는 노란색으로 보여야 해.
-				생각해보니 if문으로 다 쓴게 아니고 if, else if 이렇게 써놓아서 문제 생길 것 같지는 않음.
-				
-				-그리고 로그아웃하면 그냥 파란색으로 보이면 되는건가..
-				
-				-로그인하면 로그인 한 정보를 가져와서 디비에 있는지 확인해야겠네. 대충 그려보면.
-				아 근데 또 엄청 험난함이 예상된다 ㅋㅋㅋㅋㅋ..미치겠네.
-				
-				-신청하면 남은 좌석 개수 바꾸기.
-				
-				호호 다했네요.
-				
-				오늘은 4월 2일
-				위에서 말한 거 다 했고.
-				이걸 근데 진짜 다른 사람들이 다 쓸 수 있도록 하는 건 어떻게 하는거지?
-				그리고 우리가 같은 데이터베이스를 써야되는데 어떻게 해야하는걸까?
-				그리고 동시성 제어요.
-				팀원들끼리는 데이터베이스 속성 값에 대해서 이야기를 해야될 것 같구요.
-				
-				오늘은 4월 5일
-				동시성 제어했다.	이 말이 맞는지는 모르겠지만...
-				아무튼 다른 사람이 먼저 자리 신청하면 신청 안되도록 했음.
-				redirect 후에 화면을 확인할 수밖에 없는 게 아쉽지만 값 저장이 안되어서.
-				그럴 수 밖에.
-		      */
-		
+		      
 		      function popup(){
 					console.log("팝업창을 띄우고싶다.");
 					window.open("loginform2", "a", "width=400, height=200, left=100, top=50");
@@ -893,21 +742,6 @@
 		    	  form.submit();
 		      }
 		      
-		      //---안씀---
-		      function updateLockerDay(){
-					var info = document.querySelector(".lockerday").innerText;
-					console.log(info);
-					
-					var form = '<form action="updateLockerDay" method="post"> <div class="inputWrap"> <input type="hidden" name="area" value="lockerDay">';
-					form += '<div> <span> 내용 </span> <textarea cols="15" rows="2" name="content">';
-					form += info;
-					form += '</textarea><br/></div> </div>';
-					form += '<input type="submit" value ="수정 완료"> </form>';	    
-				    
-				    var target = document.querySelector(".lockerday");
-				    target.innerHTML = form;
-		      }
-		      
 		    </script> 
 
 			<script>
@@ -917,26 +751,23 @@
 				});
 			</script>
 
-<!--  제이쿼리 -->
-    <script>
-        $(document).ready(function() {
-            $("#modal_show").click(function() {
-                $("#exampleModal").modal("show");
-            });
- 
-            $("#close_modal").click(function() {
-                $("#exampleModal").modal("hide");
-            });
-        });
-    </script>
-
+			<!--  제이쿼리 -->
+		    <script>
+		        $(document).ready(function() {
+		            $("#modal_show").click(function() {
+		                $("#exampleModal").modal("show");
+		            });
+		 
+		            $("#close_modal").click(function() {
+		                $("#exampleModal").modal("hide");
+		            });
+		        });
+		    </script>
 
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-   <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
- 
+   	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   </body>
-  
 </html>
