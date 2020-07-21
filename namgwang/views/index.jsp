@@ -1,5 +1,8 @@
+<!-- 0. 남광. 여기는 서버관련해서 필요해서 추가했어. -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!-- 0. 여기까지. -->
+
 <!DOCTYPE HTML>
 <!--
 	Verti by HTML5 UP
@@ -20,11 +23,12 @@
 
 		<!-- 부가적인 테마 -->
 		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
-
-	<!-- 제이쿼리입니다. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	
+		<!-- 1. 남광. 제이쿼리 추가. -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<!-- 여기까지. -->
 
 		<style>
 			.elephant{
@@ -66,7 +70,6 @@
 									<li>
 										<a href="#">신청</a>
 										<ul>
-											<!-- Mt 신청은 여기서 안한다고 했었나..? ㅠㅠ -->
 											<li><a href="apply.html">사물함 신청</a></li>
 											<li><a href="#">MT 신청</a></li>
 											<!--
@@ -93,6 +96,8 @@
 									
 									<li class="login">
 										<!-- <a href="#myModal" role="button" class="btn btn-default" data-toggle="modal" >로그인</a> -->
+										
+										<!-- 2. 남광. 로그인 상태에 따라 로그인 버튼이 뜨거나 로그인 된 사람 이름이 뜸. -->
 										<c:choose>
 										    <c:when test="${sessionScope.isLogin== 'true'}">
 												<a href="#">${sessionScope.loginedStudentName}</a>
@@ -108,6 +113,7 @@
 												</button>																			      
 										    </c:otherwise>
 										</c:choose>	
+										<!-- 2. 여기까지. -->
 									</li>									
 								</ul>
 							</nav>
@@ -423,7 +429,7 @@
 					</div>
 				</div>
 	
-				<!-- 큰 화면에서의 로그인 모달. -->
+				<!-- 3.남광. 큰 화면에서의 로그인 모달. -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
@@ -495,7 +501,8 @@
 			            </div>
 			        </div>
 			    </div>
-		
+				<!-- 4. 여기까지. -->
+				
 		<!-- Footer -->
             <div id="footer-wrapper" style="text-align: center">
                <footer id="footer" class="container">
@@ -568,6 +575,8 @@
 </button> -->
 
 		<!-- Scripts -->
+		
+			<!-- 5. 남광. 자바스크립트로 모달 띄우기. -->
 		   <script>
 		        $(document).ready(function() {
 		            $("#modal_show").click(function() {
@@ -579,6 +588,7 @@
 		            });
 		        });
 		    </script>
+		    <!-- 여기까지야. -->
 
 			<script src="resources/assets/js/jquery.min.js"></script>
 			<script src="resources/assets/js/jquery.dropotron.min.js"></script>
