@@ -321,7 +321,7 @@
 					<div class="myrow">
 						<div class="mycol-md-10 mycol-md-push-1 mycol-xs-12" style="margin-bottom:20px;">
 							<p style="color:red">※주의사항</p>
-							신청 후 취소 불가합니다. 취소를 원하는 경우 000에게 연락 바랍니다. 
+							신청 후 취소 불가합니다. 취소를 원하는 경우 학생회장에게 연락 바랍니다. 
 						</div>
 					</div>
 							<!-- 모달이 필요하면 하겠는데.. 굳이 필요가 없는 것 같아서 일단 x.
