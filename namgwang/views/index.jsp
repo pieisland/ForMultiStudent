@@ -501,7 +501,7 @@
 			            </div>
 			        </div>
 			    </div>
-				<!-- 4. 여기까지. -->
+				<!-- 3. 여기까지. -->
 				
 		<!-- Footer -->
             <div id="footer-wrapper" style="text-align: center">
@@ -576,7 +576,7 @@
 
 		<!-- Scripts -->
 		
-			<!-- 5. 남광. 자바스크립트로 모달 띄우기. -->
+			<!-- 4. 남광. 자바스크립트로 모달 띄우기. -->
 		   <script>
 		        $(document).ready(function() {
 		            $("#modal_show").click(function() {
@@ -588,7 +588,7 @@
 		            });
 		        });
 		    </script>
-		    <!-- 여기까지야. -->
+		    <!-- 4. 여기까지야. -->
 
 			<script src="resources/assets/js/jquery.min.js"></script>
 			<script src="resources/assets/js/jquery.dropotron.min.js"></script>
