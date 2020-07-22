@@ -70,8 +70,8 @@
 									<li>
 										<a href="#">신청</a>
 										<ul>
-											<li><a href="apply.html">사물함 신청</a></li>
-											<li><a href="#">MT 신청</a></li>
+											<li><a href="locker">사물함 신청</a></li>
+											<li><a href="mt">MT 신청</a></li>
 											<!--
 											<li>
 												<a href="#">Phasellus consequat</a>
