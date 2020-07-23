@@ -1,0 +1,38 @@
+.nav{
+	height: 100px;
+}
+	
+.notice{
+	padding:0px;
+	margin-bottom: 10px;
+}
+	
+.modal-header{
+	background-color:#070289;
+	color:white;
+}
+		
+.login{
+	margin-right:30px;
+}
+	
+.fontBold
+{
+	font-weight: bold;
+}
+	
+/* 이게 먼저 지정을 하고 클릭에 대해서 색이 변경되는 게 없다면 가능한데
+계속 색을 바꾸면서 hover되는거는 div에서는 안먹는듯. button은 먹는데.*/
+#departureTime>div:hover{
+	background-color:orange;
+}	
+		
+#mtInfo
+{
+	width:400px;
+	position:absolute;
+	margin:0 auto;
+	top:50%; left:50%;
+	transform: translate(-50%, -50%);
+}
+	

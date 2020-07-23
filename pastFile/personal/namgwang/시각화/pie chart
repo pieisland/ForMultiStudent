@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="pie"></div>
+
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script>
+		var width=450,
+		height=450,
+		outerRadius = Math.min(width, height)/2,
+		innerRadius = outerRadius * .5,
+		//color = d3.scale.category20();
+		color = ["#C1CAF8", '#C1FCF2', '#CDFFCF', '#F8FF96', '#FFC9DA']
+
+//동일한 항목은 사실 더해서 가져와야되는데..;sql문 존나 잘 짜야되는건가?
+		var dataset = [
+			{name:"새내기 1차 정모", value:20},
+			{name:"학생회 지출", value:20},
+			{name:"새내기 배움터", value:30},
+			{name:"봄 학위수여식", value:25},
+			{name:"학생회비", value:10}
+		];
+
+		var vis = d3.select("#pie")
+		.append("svg:svg")
+		.attr("width", width)
+		.attr("height", height)
+		.append("svg:g")
+		.attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")
+		.data([dataset]);
+
+		var arc = d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+
+		var pie = d3.layout.pie().value(function(d) {return d.value});
+
+		var arcs = vis.selectAll("g.slice")
+		.data(pie)
+		.enter()
+		.append("svg:g")
+		.attr("class", "slice");
+
+		arcs.append("svg:path")
+		.attr("d", arc)
+		.attr("fill", function(d, i){return color[i];});
+
+		arcs.append("svg:text")
+		.attr("dy", ".35em")
+		.attr("text-anchor", "middle")
+		.attr("transform", function(d){return "translate(" + arc.centroid(d) + ")rotate(" +angle(d) +")";})
+		.text(function(d){return d.data.name +"   " + d.data.value;});
+
+		function angle(d){
+			var a= (d.starAngle + d.endAngle) *90/Math.PI -90;
+			return a>90 ? a-180 : a;
+		}
+
+		vis.append("svg:text")
+		.attr("dy", ".35em")
+		.attr("text-anchor", "middle")
+		.text("학생회비 사용 분포")
+		.attr("class", "title");
+
+	</script>
+</body>
+</html>

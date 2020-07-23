@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>♥멀끼리♥</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+		
+		<style>
+			.elephant{
+				width:30%;
+				margin:0 auto;
+				text-align:center;
+			}
+			.line{
+				width:100%;
+				border: thin solid black;
+				float:left;
+				
+			}
+			.a{
+				width:200px;
+				height:200px;
+				border-radius: 20px;
+				background-color: #0CA9FF;
+				text-align:center;
+				color:white;
+				font-size: 30px;
+				font-weight: bold;
+				line-height: 200px;
+			}
+			.b > .badge{
+				font-size: 30px;
+			}
+			.tab-pane{
+			  height:400px;
+			  overflow-y:scroll;
+			  overflow-x:hidden;
+			  width:100%;
+			}
+			.alert{
+				margin-bottom: 0px;
+				margin-top: 0px;
+				width: 95%
+			}
+		</style>
+	
+	</head>
+	<body class="is-preload no-sidebar">
+		<div id="page-wrapper">
+			<!-- Header -->
+				<div id="header-wrapper">
+					<header id="header" class="container">
+						<!-- Logo -->
+							<div id="logo">
+								<a href="index.html">
+									<img src="./images/logo.png" alt="My Image" width="350" height="100">
+								</a>
+							</div>
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+									<li>
+										<a href="index.html">공지사항</a>
+									</li>
+									<li>
+										<a href="#">신청</a>
+										<ul>
+											<!-- Mt 신청은 여기서 안한다고 했었나..? ㅠㅠ -->
+											<li><a href="apply.html">사물함 신청</a></li>
+											<li><a href="#">MT 신청</a></li>
+											<!--
+											<li>
+												<a href="#">Phasellus consequat</a>
+												<ul>
+													<li><a href="#">Lorem ipsum dolor</a></li>
+													<li><a href="#">Phasellus consequat</a></li>
+													<li><a href="#">Magna phasellus</a></li>
+													<li><a href="#">Etiam dolore nisl</a></li>
+												</ul>
+											</li>
+											
+											<li><a href="#">Veroeros feugiat</a></li>
+											-->
+										</ul>
+									</li>
+									
+									<li><a href="left-sidebar.html">건의사항</a></li>
+									<li><a href="right-sidebar.html">자유게시판</a></li>
+									<!-- class="current" 이면 검은색으로 되는 것 같은데. 
+										하면서 느끼는건데 이거.. 되게 바꾸면서 난리 엄청 날 것 같음 ㅋㅋㅋ..
+									-->
+									<li class="login">
+									<li class="login"><a href="no-sidebar.html">로그인</a></li>
+									</li>
+								</ul>
+							</nav>
+
+					</header>
+				</div>
+
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="panel panel-default">
+									<div class="panel-body"><h1><strong>마이페이지</strong></h1></div>
+								</div><br>
+								<h2><strong>&nbsp;내 정보</strong></h2>
+								<table id="example" class="display" style="100%">
+									<thead>
+									<tr>
+										<th>학번</th>
+										<th>학년</th>
+										<th>이름</th>
+										<th>가입일</th>
+									</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>2013112515</td>
+											<td>4학년</td>
+											<td>최희수</td>
+											<td>2020.03.19</td>
+										</tr>
+									</tbody>
+								</table><br>
+								<h2><strong>&nbsp;신청 현황</strong></h2><br>
+								<table id="example1" class="display" style="100%">
+									<thead>
+									<tr>
+										<th>종류</th>
+										<th>신청번호</th>
+										<th>신청자</th>
+										<th>신청일</th>
+									</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>MT 신청</td>
+											<td>42</td>
+											<td>최희수</td>
+											<td>2020.02.11</td>
+										</tr>
+										<tr>
+											<td>사물함 신청</td>
+											<td>23</td>
+											<td>최희수</td>
+											<td>2020.01.28</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- Footer -->
+	            <div id="footer-wrapper" style="text-align: center">
+	               <footer id="footer" class="container">
+	                  <div class="row">
+	                     
+	                     <div class="col-12">
+	                        <div class="hr-sect"><img src="./images/elephant.svg" width="100" height="100"></div><br>
+	                     </div>
+	                     
+	                  </div>
+	                  <div class="row">
+	                     <div class="col-4 col-6-medium col-12-small">
+
+	                        <!-- Links -->
+	                           <section class="widget links">
+	                              <h3>학과 Info.</h3>
+	                              <ul class="style2">
+	                                 <li><a href="#">번호 : 02-2260-8760</a></li>
+	                                 <li><a href="#">주소 : (변경예정)</a></li>
+	                              </ul>
+	                           </section>
+
+	                     </div>
+	                     <div class="col-4 col-6-medium col-12-small">
+
+	                        <!-- Links -->
+	                           <section class="widget links">
+	                              <h3>학생회 Info.</h3>
+	                              <ul class="style2">
+	                                 <li><a href="#">학생회장 : 010-9215-5644</a></li>
+	                                 <li><a href="#">부학생회장 : 010-5620-2869</a></li>
+	                                 <li><a href="#">과실 위치 : 원흥관 2층 E267</a></li>
+	                              </ul>
+	                           </section>
+
+	                     </div>
+	                     <div class="col-4 col-6-medium col-12-small">
+
+	                        <!-- Links -->
+	                           <section class="widget links">
+	                              <h3>SNS</h3>
+	                              <ul class="style2">
+	                                 <li><a href="https://ko-kr.facebook.com/people/%EB%8F%99%EA%B5%AD%EB%A9%80%ED%8B%B0/100006257864438">facebook</a></li>
+	                                 <li><a href="https://cafe.naver.com/dgumulti">naver cafe</a></li>
+	                                 <li><a href="https://pf.kakao.com/_HQVud">kakao</a></li>
+	                              </ul>
+	                           </section>
+
+	                     </div>
+	                  </div>
+	                  <div class="row">
+	                     <div class="col-12">
+	                        <div id="copyright">
+	                           <ul class="menu">
+	                              <li>&copy; Untitled. All rights reserved</li>
+	                              <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+	                              <li>Font : <a href="https://noonnu.cc/font_page/407">tt투게더</a></li>
+	                              <li>Develop: 류남광, 박은희, 최정선, 최희수</li>
+	                              <li>Thanks to : 백민주</li>
+	                           </ul>
+	                        </div>
+	                     </div>
+	                  </div>
+	               </footer>
+	            </div>
+	        </div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+			<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+			<script type="text/javascript">
+				$('#example')
+					.removeClass( 'display' )
+					.addClass('table table-striped table-bordered');
+				$("#example").DataTable({
+					// 표시 건수기능 숨기기
+					lengthChange: false,
+					// 검색 기능 숨기기
+					searching: false,
+					// 정렬 기능 숨기기
+					ordering: true,
+					// 정보 표시 숨기기
+					info: false,
+					// 페이징 기능 숨기기
+					paging: false
+				});
+				$('#example1')
+					.removeClass( 'display' )
+					.addClass('table table-striped table-bordered');
+				$("#example1").DataTable({
+					// 표시 건수기능 숨기기
+					lengthChange: false,
+					// 검색 기능 숨기기
+					searching: false,
+					// 정렬 기능 숨기기
+					ordering: true,
+					// 정보 표시 숨기기
+					info: false,
+					// 페이징 기능 숨기기
+					paging: false
+				});
+			</script>
+			<script type="text/javascript" charset="utf-8">
+				$(document).ready(function() {
+					$('#example').DataTable();
+				} );
+			</script>
+	</body>
+</html>

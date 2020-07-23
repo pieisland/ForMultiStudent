@@ -1,0 +1,149 @@
+*원격 저장소: 웹 브라우저에서 볼 수 있는 내 깃허브
+*로컬 저장소: 내 컴퓨터
+
+사실 git bash 안쓰고 브라우저에서 다 해도 됩니다.
+로컬 저장소에 저장을 하려면 git bash를 사용해야겠지만
+그냥 원격 저장소에만 저장을 할거라면 편하게 브라우저에서 하시면 됩니다.
+
+[명령어]
+1. 터미널 명령어
+1) cd: 파일 이동
+2) mkdir: 디렉토리 만들기
+3) ls: 현재 디렉토리에 어떤 파일이 있는지 보기
+4) pwd: 현재 경로 보기
+5) rm: 삭제
+6) mv: 파일 이동, 파일 이름 변경 시 사용
+ex) 
+mv file1.txt file2.txt -> 파일이름을 file1.txt에서 file2.txt로 변경.
+mv file1.txt ./folder1/file1.txt -> 파일을 현재 위치에서 현재 위치에 있는 folder1 안으로 이동.
+
+2. git 명령어
+1) 로컬 저장소(내 컴퓨터)에 있는 파일을 원격 저장소(깃허브)에 올리기
+git add 파일이름
+git commit -m "메시지"
+git push origin 올릴브랜치이름
+ex) 
+git add file.txt
+git commit -m "파일 업로드"
+git push origin master
+
+2) github에 어떤 파일을 올리지 않았는지 보는 방법
+git status
+이걸로 git add 해야할 파일을 알 수 있다. 
+
+3) 어떤 명령어가 있는지 보는 방법
+git --help
+
+3. vim editor
+-i: insert. 새로운 것을 입력할 때.
+-esc: 변경을 다 하고 에디터에서 나가고 싶을 때.
+-esc + : + wq: 저장 후 나가기
+wq 대신 q 하면 그냥 나가기
+변경 사항이 있을 때 q만 하면 안나가진다. 
+그 변경사항을 저장하지 않고 강제로 나가기 위해서는 q!로 나가면 됨.
+
+
+[원격저장소에서 만든 파일 로컬저장소로 가져오는 방법]
+1. read-me 파일 생성 안했을 때
+로컬 저장소에서 원하는 위치에 디렉토리를 하나 만들어 준 후
+디렉토리 내로 들어가서 화면에 나오는 명령어들을 복사 붙여넣기 해준다.
+
+2. read-me 파일 생성했을 때
+깃허브에서 주소를 복사해오고(주소 바로 복사할 수 있는 버튼이 있다)
+원하는 위치에(디렉토리 안만들어도 된다. 해당 이름을 가진 디렉토리가 자동으로 생성된다.)
+git clone 복사해온주소
+하면 됨.
+그 저장소로 들어가서 git init 을 해줘야 하는 걸로 알고있다.
+아마 변경사항 추적? 그런거 관리되는 듯.
+
+
+[원격 저장소에서 변경한 결과 로컬 저장소에 적용하기]
+git pull
+(->다시 찾아보니 git pull은 git 서버에서 최신 코드 받아와 merge하는 거라고 하는데
+최신 코드를 받아오는 건 아래에 적은 git fetch이다.
+그냥 아래에 적어둔 것처럼 git fetch 한 다음에 git merge 하든가
+아니면 git pull 해주면 되는 것 같기도 하고..)
+
+[git 협업(fork, upsream, merge 등) 관련]
+1. fork하고 upstream 설정하기
+1) fork 하는 법
+가져오고 싶은 것을 fork 버튼을 클릭해 내 repository로 가져온다.
+그럼 원격 저장소에 fork가 되고 이것을 로컬 저장소에 저장하기 위해
+아까 위에서 했던 git clone 을 해주면 된다.
+*git init이 필요한 걸로 알고있어요.
+git init을 해주면 저장소 구성을 위한
+.git 폴더가 생성되고 프로젝트 관리를 위한 파일과 config 파일이 들어간다고 합니다.
+
+2) upstream 설정하기
+fork를 해왔던 다른 사람의 repository로 들어가서 그 주소를 복사해온다.
+git clone한 파일로 들어가서
+git remote add upstream 해당주소
+를 하면 된다.
+
+2. 변경사항 발생
+1) fork해온 부모가 변경됐을 때 로컬 저장소를 최신 상태로 유지하는 방법
+git fetch upstream -> 업데이트 된 내역 불러오기
+git merge upstream/원하는브랜치 -> 저장소에 반영하기
+ex) 
+git merge upstream/mastergit merge
+*merge 뒤에 오는 upstream/master는 upstream의 master브랜치를 의미한다.
+내가 합치고 싶은 내용을 가지고 있는 브랜치.
+
+그리고 git push origin 브랜치이름(나의 branch)
+을 해야 원격 저장소도 반영이 된다.
+
+*conflict가 발생했을 때
+git status를 하면 어떤 문제가 있는지 알 수 있다.
+그에 따라 git add를 해주면 된다.
+당연히 commit, push도 해줘야 함.
+
+3. 브랜치
+1) branch 생성 
+git branch 원하는브랜치이름
+*잘은 모르겠는데 맨 처음에 branch를 만들 때 내 앞에 있는 브랜치를 따라 만드는 듯.
+
+2) 작업 branch 변경
+git checkout 브랜치이름
+
+*branch 생성과 동시에 checkout을 하고싶다면
+git checkout -b 브랜치이름
+을 해준다.
+
+3) branch 작업 변경 후 반영하기
+마찬가지로 git add , git commit , git push origin 브랜치이름
+해주면 된다.
+
+4) 삭제
+-로컬 저장소 삭제
+git branch -d 브랜치 이름
+잘 안되면 d를 D로 바꿔주면 된다.
+*로컬 저장소에서만 삭제했는데 다시 복구하고 싶을 때는 
+git checkout 브랜치이름
+을 하면 원격저장소에서 아직 삭제가 되지 않았기 때문에 가져올 수 있다.
+
+-원격 저장소 삭제
+git push origin :브랜치 이름
+반영할 때와의 차이는 :를 쓰냐 안쓰냐의 차이.
+:는 삭제에서 특수하게 쓰는 듯 하다.
+ex) git push origin :iss1
+
+4. pull request
+로컬 저장소에서 변경한 것을 일단 원격 저장소에 저장한다.
+web 상에서 해당 브랜치로 이동하고 pull request 버튼을 클릭하여
+upstream에 변경하고 싶음을 알린다.
+그러면 upstream에서 해당 내용을 확인하고 괜찮으면 받아들이고 변경사항이 merge 된다.
+
+이렇게 upstream 내용이 변경되면 나의 master 브랜치에 최신 사항을 업데이트 한다.
+(내가 알기론 master 브랜치는 upstream의 최신 사항을 가지고 있기 위함이고
+새로 만드는 branch는 내가 작업을 하기 위해서 만드는 걸로 알고있다.)
+위에서도 말했지만 다시 정리하자면,
+git checkout master (master branch로 이동)
+git fetch upstream (upstream의 최신 업데이트 내역 불러오기)
+git merge upstream/master (upsteam의 master branch의 업데이트 된 내용을 나의 master branch에 적용하기)
+git push origin master (원격 저장소에 반영하기)
+를 한다.
+
+내가 만든 iss1 브랜치를 iss2 브랜치에 반영하고싶으면
+git checkout iss2
+git merge iss1
+하면 된다.
