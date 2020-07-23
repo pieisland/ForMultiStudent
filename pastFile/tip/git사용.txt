@@ -147,3 +147,12 @@ git push origin master (원격 저장소에 반영하기)
 git checkout iss2
 git merge iss1
 하면 된다.
+
+**삭제를 했거나 경로를 이동한 파일에 대해서 commit을 해줘야 할 때
+일일히 git rm <file> 이렇게 해주지 말고
+git add -u를 사용하자.
+u의 의미는 update tracked files 라고 한다.
+ex) git add -u
+git commit -m "message"
+git push ...
+
